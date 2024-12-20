@@ -47,14 +47,10 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
         .csrf().disable()
-        .authorizeRequests()
-        .antMatchers("/**/auth/**")
-        .permitAll()
-        .anyRequest()
-        .authenticated()
+        .authorizeHttpRequests()
+        .requestMatchers("/", "/api/v1/auth/**").permitAll().anyRequest().authenticated()
         .and()
-        .sessionManagement()
-        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authenticationProvider(authenticationProvider())
         .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
@@ -72,7 +68,8 @@ public class SecurityConfig {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new BCryptPasswordEncoder();
+        return NoOpPasswordEncoder.getInstance();
+        //return new BCryptPasswordEncoder();
     }
 
     @Bean

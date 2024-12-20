@@ -16,7 +16,7 @@ public class DemoApplication {
     }
 
     @GetMapping("")
-    public String sayBye(@RequestParam(value = "test", defaultValue = "") String test) {
+    public String sayBye(@RequestParam(value = "", defaultValue = "") String test) {
         return String.format("Hello %s!", test);
     }
 
