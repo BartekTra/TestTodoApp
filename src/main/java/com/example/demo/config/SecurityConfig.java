@@ -13,15 +13,16 @@ import org.springframework.security.web.SecurityFilterChain;
 public class SecurityConfig {
 
     @Bean
-    // @Order(SecurityProperties.BASIC_AUTH_ORDER)
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http.authorizeHttpRequests((requests) ->
-                ((AuthorizeHttpRequestsConfigurer.AuthorizedUrl)requests
-                        .anyRequest())
-                        .authenticated());
-        http.formLogin(Customizer.withDefaults());
-        http.httpBasic(Customizer.withDefaults());
-        return (SecurityFilterChain)http.build();
+        http
+        .authorizeRequests()
+        .anyRequest()
+        .authenticated()
+        .and()
+        .httpBasic();
+        http.formLogin();
+        http.httpBasic();
+    return http.build();
     }
 
 
