@@ -48,12 +48,17 @@ public class SecurityConfig {
         http
         .csrf().disable()
         .authorizeHttpRequests()
-        .requestMatchers("/", "/api/v1/auth/**").permitAll().anyRequest().authenticated()
+        .requestMatchers("/", "/api/v1/auth/**", "/main.css").permitAll()
+        .anyRequest().authenticated()
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
         .and()
         .authenticationProvider(authenticationProvider())
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
+        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+        .formLogin(form ->
+                form.loginPage("http://localhost:3000/").permitAll()
+        );
+
     return http.build();
     }
 
