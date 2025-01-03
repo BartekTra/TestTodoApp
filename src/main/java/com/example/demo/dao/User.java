@@ -29,7 +29,13 @@ public class User implements UserDetails {
     private Set<GrantedAuthority> authorities;
 
     // Constructors
-    public User() {}
+    public User() {
+        this.authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
+        this.enabled = true; // Default value
+        this.accountNonExpired = true; // Default value
+        this.accountNonLocked = true; // Default value
+        this.credentialsNonExpired = true; // Default value
+    }
 
     public User(String username, String password) {
         this.username = username;
@@ -85,5 +91,20 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return this.enabled;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id='" + id + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", enabled=" + enabled +
+                ", accountNonExpired=" + accountNonExpired +
+                ", accountNonLocked=" + accountNonLocked +
+                ", credentialsNonExpired=" + credentialsNonExpired +
+                ", roles=" + roles +
+                ", authorities=" + authorities +
+                '}';
     }
 }

@@ -20,6 +20,6 @@ import java.util.function.Function;
 
 @Repository
 public interface AccountsRepository extends MongoRepository <User, String> {
-    Optional<User> findByUsername(String username); // Or email if that's your identifier
+    Optional<User> findByUsername(String username);
 
 }

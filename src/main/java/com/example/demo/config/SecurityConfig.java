@@ -53,7 +53,7 @@ public class SecurityConfig {
         .csrf().disable()
         .cors(cors -> corsConfigurationSource())
         .authorizeHttpRequests()
-        .requestMatchers("/", "/api/v1/auth/**", "/main.css").permitAll()
+        .requestMatchers("/","/**" ,"/api/v1/auth/**", "/main.css").permitAll()
         .anyRequest().authenticated()
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
@@ -99,12 +99,7 @@ public class SecurityConfig {
         return new UserDetailsService() {
             @Override
             public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                com.example.demo.dao.User appUser = userDao.findUserByEmail(email);
-                return new org.springframework.security.core.userdetails.User(
-                        appUser.getUsername(),
-                        appUser.getPassword(),
-                        appUser.getAuthorities()
-                );
+                return userDao.findUserByEmail(email);
             }
         };
     }

@@ -1,5 +1,7 @@
 package com.example.demo.dao;
 
+import com.example.demo.service.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import com.example.demo.dao.User;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -12,25 +14,14 @@ import java.util.List;
 
 @Repository
 public class UserDao {
-    private final static List<User> APPLICATION_USERS = Arrays.asList(
-            new User(
-                    "admin",
-                    "Password",
-                    Collections.singleton(new SimpleGrantedAuthority("ROLE_ADMIN"))
-            ),
+    private final UserService userService;
 
-            new User(
-                    "user",
-                    "Password",
-                    Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"))
-            )
-    );
+    @Autowired
+    public UserDao(UserService userService) {
+        this.userService = userService;
+    }
 
-    public User findUserByEmail(String email){
-        return APPLICATION_USERS
-                .stream()
-                .filter(u -> u.getUsername().equals(email))
-                .findFirst()
-                .orElseThrow(() -> new UsernameNotFoundException("No user was found"));
+    public User findUserByEmail(String email) {
+        return userService.findUserByEmail(email);
     }
 }

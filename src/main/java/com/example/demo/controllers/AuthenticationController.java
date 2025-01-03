@@ -28,53 +28,56 @@ public class AuthenticationController {
     private final AuthenticationManager authenticationManager;
     private final UserDao userDao;
     private final JwtUtils jwtUtils;
-    @Autowired
-    private UserService userService;
+    private final Map<String, String> activeTokens = new HashMap<>(); // In-memory token store (or replace with database)
 
-    @CrossOrigin(origins = "*")
     @PostMapping("/authenticate")
-    public ResponseEntity<Map<String, Object>> authenticate(
-            @RequestBody AuthenticationRequest request
-    ) {
+    public ResponseEntity<Map<String, Object>> authenticate(@RequestBody AuthenticationRequest request) {
         try {
+            // Authenticate user credentials
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
             );
 
+            // Retrieve user details
             final UserDetails user = userDao.findUserByEmail(request.getEmail());
-            if (user != null) {
-                // Build JSON response with the token
-                Map<String, Object> response = new HashMap<>();
-                response.put("token", jwtUtils.generateToken(user));
-                return ResponseEntity.ok(response);
+            if (user == null) {
+                return ResponseEntity.status(404).body(Map.of("error", "User not found"));
             }
+
+            // Check if user is already logged in
+            if (activeTokens.containsKey(user.getUsername())) {
+                return ResponseEntity.status(400).body(Map.of("error", "User already logged in"));
+            }
+
+            // Generate JWT token
+            String token = jwtUtils.generateToken(user);
+
+            // Store the token in the active tokens map
+            activeTokens.put(user.getUsername(), token);
+
+            // Return success response with the token
+            return ResponseEntity.ok(Map.of("token", token));
         } catch (Exception e) {
-            // Authentication failed or other error
-            Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("error", "error");
-            return ResponseEntity.status(400).body(errorResponse);
+            return ResponseEntity.status(401).body(Map.of("error", "Invalid email or password"));
         }
-        Map<String, Object> errorResponse = new HashMap<>();
-        errorResponse.put("error", "error");
-        return ResponseEntity.status(400).body(errorResponse);
     }
 
-    @CrossOrigin(origins = "*")
-    @PostMapping("/Register")
-    public ResponseEntity<Map<String, Object>> register(@RequestBody User user) {
-        try {
-            User savedUser = userService.registerUser(user);
 
-            Map<String, Object> response = new HashMap<>();
-            response.put("message", "User registered successfully");
-            response.put("user", savedUser);
-            return ResponseEntity.ok(response);
-        }
-        catch (Exception e) {
-            e.printStackTrace(); // Log the exception details
-            Map<String, Object> errorResponse = new HashMap<>();
-            errorResponse.put("error", "Registration failed");
-            return ResponseEntity.status(500).body(errorResponse);
+    @PostMapping("/logout")
+    public ResponseEntity<Map<String, String>> logout(@RequestHeader("Authorization") String token) {
+        try {
+            // Extract username from token
+            String username = jwtUtils.extractUsername(token.replace("Bearer ", ""));
+
+            // Remove the token from active tokens
+            if (activeTokens.containsKey(username)) {
+                activeTokens.remove(username);
+                return ResponseEntity.ok(Map.of("message", "Logged out successfully"));
+            }
+
+            return ResponseEntity.status(400).body(Map.of("error", "Token not found or already logged out"));
+        } catch (Exception e) {
+            return ResponseEntity.status(400).body(Map.of("error", "Invalid token"));
         }
     }
 
