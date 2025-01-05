@@ -62,6 +62,7 @@ public class AuthenticatedQuery {
             return ResponseEntity.status(401).body(Map.of("error", "Invalid token"));
         }
 
+        System.out.println(task);
         // Set the user ID in the task or process as needed
         task.setUserId(userId); // Assuming your Task class has a userId field
 

@@ -2,7 +2,6 @@ package com.example.demo.Collections;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.ToString;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,14 +18,16 @@ public class Task {
     private String description;
     private Date dueDate;
     private String userId; // Foreign key referencing the user's _id from Accounts
+    private String category;
 
     public Task() { }
 
-    public Task(String title, String description, Date dueDate, String userId) {
+    public Task(String title, String description, Date dueDate, String userId, String Category) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.userId = userId;
+        this.category = Category;
     }
 
     @Override
@@ -37,6 +38,7 @@ public class Task {
                 ", description='" + description + '\'' +
                 ", dueDate=" + dueDate + '\'' +
                 ", userId='" + userId + '\'' +
+                ", category='" + category + '\'' +
                 '}';
     }
 }

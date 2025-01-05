@@ -31,7 +31,25 @@ public class JwtUtils {
         return claimsResolver.apply(claims);
     }
     private Claims extractAllClaims(String token) {
-        return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        try {
+            // Parse the claims from the token
+            return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+        } catch (io.jsonwebtoken.ExpiredJwtException e) {
+            System.out.println("Token has expired");
+            throw new IllegalStateException("Token has expired", e);
+        } catch (io.jsonwebtoken.SignatureException e) {
+            System.out.println("Invalid token signature");
+            throw new IllegalArgumentException("Invalid token signature", e);
+        } catch (io.jsonwebtoken.MalformedJwtException e) {
+            System.out.println("Malformed token");
+            throw new IllegalArgumentException("Malformed token", e);
+        } catch (io.jsonwebtoken.MissingClaimException | io.jsonwebtoken.IncorrectClaimException e) {
+            System.out.println("Not enough claims or incorrect claims");
+            throw new IllegalArgumentException("Not enough claims or incorrect claims in the token", e);
+        } catch (Exception e) {
+            System.out.println("Unknown error while extracting claims");
+            throw new IllegalArgumentException("An error occurred while extracting claims", e);
+        }
     }
 
     private Boolean isTokenExpired(String token) {
