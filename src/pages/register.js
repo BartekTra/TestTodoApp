@@ -1,11 +1,15 @@
 import '.././App.css';
 import api from '../api/axiosConfig.js';
 import { useState } from 'react';
+import ReCAPTCHA from "react-google-recaptcha";
+
 
 function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
+  const [VerifyValue, SetVerifedValue] = useState(null);
+
 
   // Function to handle login
   const handleRegister = async (e) => {
@@ -51,8 +55,15 @@ function RegisterPage() {
             required
           />
         </div>
-        <button type="submit">Register</button>
+        <div align="center">
+          <ReCAPTCHA
+          sitekey='6LfIy64qAAAAAFiaiLzzlCVAJgj2zawU1JXXr_X1'
+          onChange={(val) => SetVerifedValue(val)}
+          />
+        </div>
+        <button disabled={!VerifyValue} type="submit">Register</button>
       </form>
+      {responseMessage && <p>{responseMessage}</p>}
     </div>
   );
 }

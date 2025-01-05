@@ -6,6 +6,7 @@ function Main() {
   const [taskTitle, setTaskTitle] = useState('');
   const [taskDescription, setTaskDescription] = useState('');
   const [taskDate, setTaskDate] = useState('');
+  const [category, SetCategory] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
 
   useEffect(() => {
@@ -36,11 +37,12 @@ function Main() {
   
 
   const handleAddTask = async () => {
-    if (taskTitle && taskDescription && taskDate) {
+    if (taskTitle && taskDescription && taskDate && category) {
       try {
         const newTask = {
           title: taskTitle,
           description: taskDescription,
+          category: category,
           dueDate: taskDate, // Already in YYYY-MM-DD format from the input
         };
   
@@ -95,6 +97,15 @@ function Main() {
         />
       </div>
       <div>
+        <label htmlFor="Category">Category:</label>
+        <input
+          type="text"
+          id="Category"
+          value={category}
+          onChange={(e) => SetCategory(e.target.value)}
+        />
+      </div>
+      <div>
         <label htmlFor="taskDate">Date:</label>
         <input
           type="date"
@@ -110,8 +121,7 @@ function Main() {
         <ul>
           {tasks.map((task) => (
             <li key={task.id}>
-                <strong>{task.title}</strong> - {task.description} ({task.dueDate})
-                <button onClick={() => handleDeleteTask(task.id)}>Delete</button>
+                <strong>Title: {task.title} </strong>Description: - {task.description} Category: {task.category} Date: ({task.dueDate})
             </li>
             ))}
         </ul>

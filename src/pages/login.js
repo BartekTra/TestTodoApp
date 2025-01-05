@@ -2,11 +2,13 @@ import { useNavigate } from 'react-router-dom'; // Import useNavigate for naviga
 import '../App.css';
 import api from '../api/axiosConfig';
 import { useState } from 'react';
+import ReCAPTCHA from "react-google-recaptcha";
 
 function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
+  const [VerifyValue, SetVerifedValue] = useState(null);
   const navigate = useNavigate(); // Initialize the useNavigate hook
 
   // Function to handle login
@@ -49,7 +51,7 @@ function LoginPage() {
 
 
   return (
-    <div className="App">
+    <div className="App" data-theme="">
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>
@@ -72,12 +74,18 @@ function LoginPage() {
             required
           />
         </div>
-        <button type="submit">Login</button>
+        <div align="center">
+          <ReCAPTCHA
+          sitekey='6LfIy64qAAAAAFiaiLzzlCVAJgj2zawU1JXXr_X1'
+          onChange={(val) => SetVerifedValue(val)}
+          />
+        </div>
+        <button  type="submit">Login</button>
       </form>
-      {/* Display the response message */}
       {responseMessage && <p>{responseMessage}</p>}
     </div>
   );
 }
+
 
 export default LoginPage;

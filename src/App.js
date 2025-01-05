@@ -4,6 +4,7 @@ import LoginPage from './pages/login';
 import RegisterPage from './pages/register';
 import Main from './pages/Authorized/main.js';
 
+import "./App.css"
 
 
 function App() {
