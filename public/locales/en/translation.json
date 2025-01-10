@@ -1,0 +1,32 @@
+{
+  "login": {
+    "title": "Login",
+    "emailLabel": "Email:",
+    "passwordLabel": "Password:",
+    "loginButton": "Login",
+    "captchaLabel": "Verify that you are not a robot",
+    "loginSuccess": "Login successful! Redirecting...",
+    "loginFailed": "Login failed. Please try again."
+  },
+  "register": {
+    "title": "Register",
+    "emailLabel": "Email:",
+    "passwordLabel": "Password:",
+    "registerButton": "Register",
+    "captchaLabel": "Verify that you are not a robot",
+    "registerSuccess": "Registration successful!",
+    "registerFailed": "Registration failed. Please try again."
+  },
+  "navbar": {
+    "brand": "To Do List",
+    "home": "Home",
+    "pages": {
+      "title": "Pages",
+      "login": "Login",
+      "register": "Register",
+      "main": "Main"
+    }
+  },
+  "welcome": "Welcome",
+  "description": "Please log in to access your account."
+}

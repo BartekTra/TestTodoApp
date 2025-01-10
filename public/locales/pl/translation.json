@@ -1,0 +1,32 @@
+{
+  "login": {
+    "title": "Logowanie",
+    "emailLabel": "Email:",
+    "passwordLabel": "Hasło:",
+    "loginButton": "Zaloguj się",
+    "captchaLabel": "Zweryfikuj, że nie jesteś robotem",
+    "loginSuccess": "Logowanie zakończone sukcesem! Przekierowywanie...",
+    "loginFailed": "Logowanie nie powiodło się. Spróbuj ponownie."
+  },
+  "register": {
+    "title": "Rejestracja",
+    "emailLabel": "Email:",
+    "passwordLabel": "Hasło:",
+    "registerButton": "Zarejestruj się",
+    "captchaLabel": "Zweryfikuj, że nie jesteś robotem",
+    "registerSuccess": "Rejestracja zakończona sukcesem!",
+    "registerFailed": "Rejestracja nie powiodła się. Spróbuj ponownie."
+  },
+  "navbar": {
+    "brand": "Lista Zadań",
+    "home": "Strona Główna",
+    "pages": {
+      "title": "Strony",
+      "login": "Logowanie",
+      "register": "Rejestracja",
+      "main": "Główna"
+    }
+  },
+  "welcome": "Witamy",
+  "description": "Zaloguj się, aby uzyskać dostęp do swojego konta."
+}

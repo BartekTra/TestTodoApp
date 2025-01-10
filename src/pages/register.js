@@ -2,41 +2,40 @@ import '.././App.css';
 import api from '../api/axiosConfig.js';
 import { useState } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
-
+import { useTranslation } from 'react-i18next';
 
 function RegisterPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
   const [VerifyValue, SetVerifedValue] = useState(null);
+  const { t } = useTranslation();
 
-
-  // Function to handle login
   const handleRegister = async (e) => {
-    e.preventDefault(); // Prevent page reload on form submission
+    e.preventDefault();
 
     try {
       const response = await api.post('http://localhost:8080/api/v1/auth/Register', {
         headers: {
-          'Content-Type': 'application/json', // Required header
+          'Content-Type': 'application/json'
         },
         username: email,
         password: password,
       });
 
-      setResponseMessage('Register successful!');
+      setResponseMessage('registerSuccess');
     } catch (error) {
       console.error('Error during Register:', error);
-      setResponseMessage(error.response?.data?.message || 'Register failed. Please try again.');
+      setResponseMessage('registerFailed');
     }
   };
 
   return (
     <div className="App">
-      <h1>Register</h1>
+      <h1>{t('register.title')}</h1>
       <form onSubmit={handleRegister}>
         <div>
-          <label htmlFor="email">Email:</label>
+          <label htmlFor="email">{t('register.emailLabel')}</label>
           <input
             type="email"
             id="email"
@@ -46,7 +45,7 @@ function RegisterPage() {
           />
         </div>
         <div>
-          <label htmlFor="password">Password:</label>
+          <label htmlFor="password">{t('register.passwordLabel')}</label>
           <input
             type="password"
             id="password"
@@ -57,13 +56,13 @@ function RegisterPage() {
         </div>
         <div align="center">
           <ReCAPTCHA
-          sitekey='6LfIy64qAAAAAFiaiLzzlCVAJgj2zawU1JXXr_X1'
-          onChange={(val) => SetVerifedValue(val)}
+            sitekey="6LfIy64qAAAAAFiaiLzzlCVAJgj2zawU1JXXr_X1"
+            onChange={(val) => SetVerifedValue(val)}
           />
         </div>
-        <button disabled={!VerifyValue} type="submit">Register</button>
+        <button disabled={!VerifyValue} type="submit">{t('register.registerButton')}</button>
       </form>
-      {responseMessage && <p>{responseMessage}</p>}
+      {responseMessage && <p>{t(`register.${responseMessage}`)}</p>}
     </div>
   );
 }

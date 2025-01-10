@@ -8,6 +8,7 @@ function Main() {
   const [taskDate, setTaskDate] = useState('');
   const [category, SetCategory] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
+  const [priority, setPriority] = useState('');
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -37,12 +38,13 @@ function Main() {
   
 
   const handleAddTask = async () => {
-    if (taskTitle && taskDescription && taskDate && category) {
+    if (taskTitle && taskDescription && taskDate && category && priority) {
       try {
         const newTask = {
           title: taskTitle,
           description: taskDescription,
           category: category,
+          priority: priority,
           dueDate: taskDate, // Already in YYYY-MM-DD format from the input
         };
   
@@ -51,6 +53,7 @@ function Main() {
         setTaskTitle('');
         setTaskDescription('');
         setTaskDate('');
+        setPriority('NORMAL');
         setResponseMessage('Task added successfully!');
       } catch (error) {
         console.error('Error adding task:', error);
@@ -106,6 +109,18 @@ function Main() {
         />
       </div>
       <div>
+        <label htmlFor="priority">Priority:</label>
+        <select
+          id="priority"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value)}
+        >
+          <option value="HIGH">High</option>
+          <option value="NORMAL">Normal</option>
+          <option value="LOW">Low</option>
+        </select>
+      </div>
+      <div>
         <label htmlFor="taskDate">Date:</label>
         <input
           type="date"
@@ -120,9 +135,15 @@ function Main() {
       {tasks.length > 0 ? (
         <ul>
           {tasks.map((task) => (
-            <li key={task.id}>
-                <strong>Title: {task.title} </strong>Description: - {task.description} Category: {task.category} Date: ({task.dueDate})
-            </li>
+            <ul key={task.id}>
+              <div>
+                <strong> Title: </strong> {task.title} 
+                <strong> Description: - </strong> {task.description} 
+                <strong> Category: </strong> {task.category} 
+                <strong> Priority: </strong> {task.priority} 
+                <strong> Date: </strong> {task.dueDate} 
+              </div>
+            </ul>
             ))}
         </ul>
       ) : (
