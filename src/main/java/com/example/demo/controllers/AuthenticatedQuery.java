@@ -148,7 +148,7 @@ public class AuthenticatedQuery {
         int inProgress = 0;
         int overdue = 0;
         int completedOnTime = 0;
-
+        int allTasks = 0;
         for (Task task : tasks) {
             LocalDate dueDate = task.getDueDate(); // Zakładam, że dueDate jest typu LocalDate
             LocalDate completionDate = task.getCompletionDate(); // completionDate również typu LocalDate
@@ -166,6 +166,7 @@ public class AuthenticatedQuery {
                     inProgress++;
                 }
             }
+            allTasks++;
         }
 
 
@@ -174,6 +175,7 @@ public class AuthenticatedQuery {
         report.put("inProgress", inProgress);
         report.put("overdue", overdue);
         report.put("completedOnTime", completedOnTime);
+        report.put("allTasks", allTasks);
 
         return ResponseEntity.ok(report);
     }
