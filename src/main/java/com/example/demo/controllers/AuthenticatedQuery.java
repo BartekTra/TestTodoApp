@@ -62,13 +62,18 @@ public class AuthenticatedQuery {
             return ResponseEntity.status(401).body(Map.of("error", "Invalid token"));
         }
 
-        System.out.println(task);
+
         // Set the user ID in the task or process as needed
         task.setUserId(userId); // Assuming your Task class has a userId field
 
+        if (task.getPriority() == null) {
+            task.setPriority(Task.Priority.NORMAL); // Domyślny priorytet
+        }
+
+
         // Call the service to add the task
         taskService.AddTask(task);
-
+        System.out.println(task);
         // Return a success response
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Task added successfully!");

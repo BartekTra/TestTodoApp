@@ -19,15 +19,31 @@ public class Task {
     private Date dueDate;
     private String userId; // Foreign key referencing the user's _id from Accounts
     private String category;
+    private Priority priority;
+
+    public enum Priority {
+        HIGH,
+        NORMAL,
+        LOW
+    }
+
+    public Priority getPriority() {
+        return priority;
+    }
+
+    public void setPriority(Priority priority) {
+        this.priority = priority;
+    }
 
     public Task() { }
 
-    public Task(String title, String description, Date dueDate, String userId, String Category) {
+    public Task(String title, String description, Date dueDate, String userId, String Category, Priority priority) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.userId = userId;
         this.category = Category;
+        this.priority = priority;
     }
 
     @Override

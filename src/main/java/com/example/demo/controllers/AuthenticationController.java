@@ -29,7 +29,8 @@ public class AuthenticationController {
     private final UserDao userDao;
     private final JwtUtils jwtUtils;
     private final Map<String, String> activeTokens = new HashMap<>(); // In-memory token store (or replace with database)
-
+    @Autowired
+    private UserService userService;
     @PostMapping("/authenticate")
     public ResponseEntity<Map<String, Object>> authenticate(@RequestBody AuthenticationRequest request) {
         try {
@@ -62,6 +63,25 @@ public class AuthenticationController {
         }
     }
 
+    @CrossOrigin(origins = "*")
+    @PostMapping("/Register")
+    public ResponseEntity<Map<String, Object>> register(@RequestBody User user) {
+        try {
+            User savedUser = userService.registerUser(user);
+            Map<String, Object> response = new HashMap<>();
+            response.put("message", "User registered successfully");
+            response.put("user", savedUser);
+            return ResponseEntity.ok(response);
+        }
+        catch (Exception e) {
+            e.printStackTrace(); // Log the exception details
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", "Registration failed");
+            return ResponseEntity.status(500).body(errorResponse);
+        }
+    }
+
+
 
     @PostMapping("/logout")
     public ResponseEntity<Map<String, String>> logout(@RequestHeader("Authorization") String token) {
@@ -80,5 +100,8 @@ public class AuthenticationController {
             return ResponseEntity.status(400).body(Map.of("error", "Invalid token"));
         }
     }
+
+
+
 
 }
