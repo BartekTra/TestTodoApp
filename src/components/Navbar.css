@@ -1,0 +1,87 @@
+/* Dark Theme Navbar */
+.navbar-dark {
+    background-color: #1e1e2f; /* Dark background */
+    color: #ffffff; /* Light text color */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3); /* Subtle shadow */
+    border-bottom: 1px solid #444; /* Optional border for separation */
+}
+
+.navbar-dark .navbar-brand {
+    color: #f8f9fa; /* Bright brand color */
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.navbar-dark .navbar-brand:hover {
+    color: #61dafb; /* Highlight color on hover */
+}
+
+.navbar-dark .navbar-nav .nav-link {
+    color: #d1d1d1; /* Subtle gray for links */
+    font-size: 1.1rem;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-dark .navbar-nav .nav-link:hover {
+    color: #ffffff; /* Bright white on hover */
+    background-color: #333333; /* Slight highlight background */
+    border-radius: 5px;
+}
+
+.navbar-dark .navbar-toggler {
+    background-color: #444; /* Button color */
+    border: none;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease;
+}
+
+.navbar-dark .navbar-toggler:hover {
+    background-color: #555; /* Darker on hover */
+}
+
+.navbar-dark .navbar-toggler-icon {
+    background-image: linear-gradient(white, white); /* White toggler icon */
+    height: 3px;
+    width: 25px;
+    display: block;
+    border-radius: 1px;
+}
+
+.navbar-dark .navbar-toggler-icon::before,
+.navbar-dark .navbar-toggler-icon::after {
+    content: "";
+    display: block;
+    background-color: white;
+    height: 3px;
+    width: 25px;
+    margin: 5px 0;
+    border-radius: 1px;
+}
+
+.navbar-dark .dropdown-menu {
+    background-color: #2a2a3b; /* Dark dropdown menu */
+    border: none;
+    border-radius: 5px;
+}
+
+.navbar-dark .dropdown-item {
+    color: #d1d1d1;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.navbar-dark .dropdown-item:hover {
+    color: #ffffff;
+    background-color: #444; /* Highlight dropdown item */
+}
+
+/* For responsive and mobile view */
+@media (max-width: 991.98px) {
+    .navbar-dark .navbar-nav .nav-link {
+        text-align: center;
+        padding: 1rem;
+    }
+}

@@ -2,14 +2,21 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
+<<<<<<< HEAD
 import Finaltoggle from '.././ThemeProvider.js';
 import { useTranslation } from 'react-i18next';
+=======
+
+import Finaltoggle from '.././ThemeProvider.jsx';
+
+import "./Navbar.css";
+>>>>>>> 5ce82b5 (Zmiana motywów działa)
 
 function FinalNavbar() {
   const { t } = useTranslation();
 
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar id="navbar" expand="lg" className="navbar-dark">
       <Container>
         <Navbar.Brand href="/">{t('navbar.brand')}</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
