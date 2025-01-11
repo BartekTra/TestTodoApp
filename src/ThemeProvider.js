@@ -1,18 +1,21 @@
-import React, { useState } from "react";
-import useLocalStorage from "use-local-storage";
-import "react-toggle/style.css" 
-import Toggle from 'react-toggle'
+import React, { useState, useEffect } from 'react';
+import "react-toggle/style.css";
+import Toggle from 'react-toggle';
 import "./App.css";
 
 const Finaltoggle = () => {
-  const preference = window.matchMedia("(prefers-color-scheme: dark)").matches;
-  const [isDark, setIsDark] = useLocalStorage("isDark", preference);
+  const [isDarkTheme, setIsDarkTheme] = useState(false);
+
+  useEffect(() => {
+    document.body.className = isDarkTheme ? 'dark_theme' : 'light_theme';
+  }, [isDarkTheme]);
 
   return (
-    <div className="App" data-theme={isDark ? "dark" : "light"}>
-      <Toggle isChecked={isDark} handleChange={() => setIsDark(!isDark)} />
-      <div className="box">
-      </div>
+    <div className="App">
+      {/* Use an arrow function to update the state */}
+      <Toggle 
+        onChange={() => setIsDarkTheme(!isDarkTheme)} 
+      />
     </div>
   );
 };

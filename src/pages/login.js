@@ -80,7 +80,7 @@ function LoginPage() {
           onChange={(val) => SetVerifedValue(val)}
           />
         </div>
-        <button  type="submit">Login</button>
+        <button disabled={!VerifyValue} type="submit">Login</button>
       </form>
       {responseMessage && <p>{responseMessage}</p>}
     </div>
