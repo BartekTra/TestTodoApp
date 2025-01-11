@@ -90,6 +90,38 @@ function LoginPage() {
   <p>{t('description')}</p>
 </div>
 </div>
+      <h1>Login</h1>
+      <form onSubmit={handleLogin}>
+        <div>
+          <label htmlFor="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+        <div>
+          <label htmlFor="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+        <div align="center">
+          <ReCAPTCHA
+          sitekey='6LfIy64qAAAAAFiaiLzzlCVAJgj2zawU1JXXr_X1'
+          onChange={(val) => SetVerifedValue(val)}
+          />
+        </div>
+        <button disabled={!VerifyValue} type="submit">Login</button>
+      </form>
+      {responseMessage && <p>{responseMessage}</p>}
+    </div>
   );
 }
 

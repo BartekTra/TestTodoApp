@@ -1,3 +1,75 @@
+/* Light Theme */
+body.light_theme {
+  --background-color: #f9f9f9;
+  --primary-text-color: #333;
+  --box-bg-color: #ffffff;
+  --toggle-bg: #dcdcdc;
+  --toggle-border-color: #ccc;
+}
+
+body.dark_theme {
+  --background-color: #1e1e1e;
+  --primary-text-color: #f5f5f5;
+  --box-bg-color: #333333;
+  --toggle-bg: #444444;
+  --toggle-border-color: #666666;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--primary-text-color);
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Toggle Container */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 50px;
+}
+
+.toggle-label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Toggle Icons */
+.toggle-icon {
+  font-size: 18px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+/* Theme Text */
+.theme-text {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+/* Box Styling */
+.box {
+  margin: 50px auto;
+  padding: 20px;
+  width: 80%;
+  max-width: 600px;
+  background-color: var(--box-bg-color);
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.box h2 {
+  margin: 0;
+  font-size: 24px;
+  color: var(--primary-text-color);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -14,15 +86,6 @@
   --toggle-fg: #ffd000;
 }
 
-[data-theme="dark"] {
-  --background-color: #0a0a0a;
-  --foreground-color: #567aff;
-  --primary-text-color: #f6f6f6;
-  --secondary-text-color: #0a0a0a;
-  --toggle-bg: #283452;
-  --toggle-fg: #00a6ff;
-}
-
 
 .App {
   text-align: center;
@@ -33,24 +96,9 @@
   pointer-events: none;
 }
 
-body {
-  --color-background: #fafafa;
-  --color-foreground: #1f2023;
-}
-
-body.dark {
-  --color-background: #1f2023;
-  --color-foreground: #efefef;
-}
-
-@media (prefers-color-scheme: dark) {
-  body {
-    background-color: #1f2023;
-    color: #dadada;
-  }
-}
 
 .App-header {
+  background-color: var(--body_background);
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
