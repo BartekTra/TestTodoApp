@@ -23,4 +23,12 @@ public class TaskService {
     public List<Task> findByUserId(String userId) {
         return taskRepository.findByUserId(userId);
     }
+
+    public Task findById(String taskId) {
+        return taskRepository.findById(taskId).orElse(null);
+    }
+
+    public void updateTask(Task task) {
+        taskRepository.save(task);
+    }
 }
