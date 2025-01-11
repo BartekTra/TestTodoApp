@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import api from '../.././api/axiosConfig'; // Axios configuration for your backend
+import { useTranslation } from 'react-i18next';
 
 function Main() {
   const [tasks, setTasks] = useState([]);
@@ -9,6 +10,10 @@ function Main() {
   const [category, SetCategory] = useState('');
   const [responseMessage, setResponseMessage] = useState('');
   const [priority, setPriority] = useState('');
+  const [sortOption, setSortOption] = useState('date'); // Default sort by date
+  const [dateSortOrder, setDateSortOrder] = useState('earliest'); // Default date sort order
+  const [priorityFilter, setPriorityFilter] = useState('ALL'); // Default priority filter
+   const { t } = useTranslation();
 
   useEffect(() => {
     const fetchTasks = async () => {
@@ -24,7 +29,7 @@ function Main() {
         setResponseMessage('Failed to load tasks.');
       }
     };
-  
+
     fetchTasks();
   }, []);
 
@@ -35,7 +40,6 @@ function Main() {
     const day = String(date.getDate()).padStart(2, '0');
     return `${year}-${month}-${day}`;
   };
-  
 
   const handleAddTask = async () => {
     if (taskTitle && taskDescription && taskDate && category && priority) {
@@ -47,7 +51,7 @@ function Main() {
           priority: priority,
           dueDate: taskDate, // Already in YYYY-MM-DD format from the input
         };
-  
+
         const response = await api.post('/api/v1/AddTask', newTask);
         setTasks([...tasks, { ...response.data, dueDate: taskDate }]);
         setTaskTitle('');
@@ -63,9 +67,7 @@ function Main() {
       setResponseMessage('Please fill in all fields before adding a task.');
     }
   };
-  
 
-  // Function to handle deleting tasks
   const handleDeleteTask = async (taskId) => {
     try {
       await api.delete(`/api/v1/tasks/${taskId}`); // Replace with your actual API endpoint
@@ -77,83 +79,137 @@ function Main() {
     }
   };
 
-  return (
-    <div className="App">
-      <h1>To-Do List</h1>
-      <h2>Add a Task</h2>
-      <div>
-        <label htmlFor="taskTitle">Title:</label>
-        <input
-          type="text"
-          id="taskTitle"
-          value={taskTitle}
-          onChange={(e) => setTaskTitle(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="taskDescription">Description:</label>
-        <input
-          type="text"
-          id="taskDescription"
-          value={taskDescription}
-          onChange={(e) => setTaskDescription(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="Category">Category:</label>
-        <input
-          type="text"
-          id="Category"
-          value={category}
-          onChange={(e) => SetCategory(e.target.value)}
-        />
-      </div>
-      <div>
-        <label htmlFor="priority">Priority:</label>
-        <select
-          id="priority"
-          value={priority}
-          onChange={(e) => setPriority(e.target.value)}
-        >
-          <option value="HIGH">High</option>
-          <option value="NORMAL">Normal</option>
-          <option value="LOW">Low</option>
-        </select>
-      </div>
-      <div>
-        <label htmlFor="taskDate">Date:</label>
-        <input
-          type="date"
-          id="taskDate"
-          value={taskDate}
-          onChange={(e) => setTaskDate(e.target.value)}
-        />
-      </div>
-      <button onClick={handleAddTask}>Add Task</button>
+  const filteredAndSortedTasks = tasks
+    .filter((task) => {
+      if (priorityFilter === 'ALL') return true;
+      return task.priority === priorityFilter;
+    })
+    .sort((a, b) => {
+      if (sortOption === 'date') {
+        if (dateSortOrder === 'earliest') {
+          return new Date(a.dueDate) - new Date(b.dueDate);
+        } else {
+          return new Date(b.dueDate) - new Date(a.dueDate);
+        }
+      }
+      return 0; // No specific sort needed for priority filter
+    });
 
-      <h3>Task List</h3>
-      {tasks.length > 0 ? (
-        <ul>
-          {tasks.map((task) => (
-            <ul key={task.id}>
+    return (
+      <div className="App">
+        <h1>{t('main.title')}</h1>
+        <h2>{t('main.addTask')}</h2>
+        <div>
+          <label htmlFor="taskTitle">{t('main.labels.taskTitle')}:</label>
+          <input
+            type="text"
+            id="taskTitle"
+            value={taskTitle}
+            onChange={(e) => setTaskTitle(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="taskDescription">{t('main.labels.taskDescription')}:</label>
+          <input
+            type="text"
+            id="taskDescription"
+            value={taskDescription}
+            onChange={(e) => setTaskDescription(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="Category">{t('main.labels.category')}:</label>
+          <input
+            type="text"
+            id="Category"
+            value={category}
+            onChange={(e) => SetCategory(e.target.value)}
+          />
+        </div>
+        <div>
+          <label htmlFor="priority">{t('main.labels.priority')}:</label>
+          <select
+            id="priority"
+            value={priority}
+            onChange={(e) => setPriority(e.target.value)}
+          >
+            <option value="HIGH">{t('main.priorities.high')}</option>
+            <option value="NORMAL">{t('main.priorities.normal')}</option>
+            <option value="LOW">{t('main.priorities.low')}</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="taskDate">{t('main.labels.date')}:</label>
+          <input
+            type="date"
+            id="taskDate"
+            value={taskDate}
+            onChange={(e) => setTaskDate(e.target.value)}
+          />
+        </div>
+        <button onClick={handleAddTask}>{t('main.buttons.addTask')}</button>
+  
+        <div>
+          <h3>{t('main.taskList.title')}</h3>
+          <div>
+            <label htmlFor="sortOption">{t('main.labels.sortBy')}: </label>
+            <select
+              id="sortOption"
+              value={sortOption}
+              onChange={(e) => setSortOption(e.target.value)}
+            >
+              <option value="date">{t('main.sortOptions.date')}</option>
+            </select>
+            {sortOption === 'date' && (
               <div>
-                <strong> Title: </strong> {task.title} 
-                <strong> Description: - </strong> {task.description} 
-                <strong> Category: </strong> {task.category} 
-                <strong> Priority: </strong> {task.priority} 
-                <strong> Date: </strong> {task.dueDate} 
+                <label htmlFor="dateSortOrder">{t('main.labels.sortOrder')}: </label>
+                <select
+                  id="dateSortOrder"
+                  value={dateSortOrder}
+                  onChange={(e) => setDateSortOrder(e.target.value)}
+                >
+                  <option value="earliest">{t('main.sortOrder.earliest')}</option>
+                  <option value="latest">{t('main.sortOrder.latest')}</option>
+                </select>
               </div>
+            )}
+            <div>
+              <label htmlFor="priorityFilter">{t('main.labels.priorityFilter')}: </label>
+              <select
+                id="priorityFilter"
+                value={priorityFilter}
+                onChange={(e) => setPriorityFilter(e.target.value)}
+              >
+                <option value="ALL">{t('main.priorities.all')}</option>
+                <option value="HIGH">{t('main.priorities.high')}</option>
+                <option value="NORMAL">{t('main.priorities.normal')}</option>
+                <option value="LOW">{t('main.priorities.low')}</option>
+              </select>
+            </div>
+          </div>
+          {filteredAndSortedTasks.length > 0 ? (
+            <ul>
+              {filteredAndSortedTasks.map((task) => (
+                <ul key={task.id}>
+                  <div>
+                    <strong>{t('main.labels.taskTitle')}:</strong> {task.title} <br />
+                    <strong>{t('main.labels.taskDescription')}:</strong> {task.description} <br />
+                    <strong>{t('main.labels.category')}:</strong> {task.category} <br />
+                    <strong>{t('main.labels.priority')}:</strong> {task.priority} <br />
+                    <strong>{t('main.labels.date')}:</strong> {task.dueDate} <br />
+                    <button onClick={() => handleDeleteTask(task.id)}>
+                      {t('main.buttons.deleteTask')}
+                    </button>
+                  </div>
+                </ul>
+              ))}
             </ul>
-            ))}
-        </ul>
-      ) : (
-        <p>No tasks available. Add a new task above!</p>
-      )}
-
-      {/* Response message */}
-      {responseMessage && <p>{responseMessage}</p>}
-    </div>
-  );
-}
+          ) : (
+            <p>{t('main.taskList.noTasks')}</p>
+          )}
+        </div>
+      </div>
+    );
+  }
 
 export default Main;
