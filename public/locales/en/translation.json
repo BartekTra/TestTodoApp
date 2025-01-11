@@ -24,8 +24,16 @@
       "title": "Pages",
       "login": "Login",
       "register": "Register",
-      "main": "Main"
+      "main": "Main",
+      "report": "Report"
     }
+  },
+  "report": {
+    "title": "Analysis of your tasks!",
+    "inProgress": "In Progress",
+    "overdue": "Overdue",
+    "completedOnTime": "Completed On Time",
+    "allTasks": "All of your tasks"
   },
   "main": {
     "title": "To-Do List",
@@ -38,7 +46,8 @@
       "date": "Date",
       "sortBy": "Sort by",
       "sortOrder": "Order",
-      "priorityFilter": "Priority"
+      "priorityFilter": "Priority",
+      "status": "Status"
     },
     "priorities": {
       "high": "High",
@@ -55,7 +64,8 @@
     },
     "buttons": {
       "addTask": "Add Task",
-      "deleteTask": "Delete"
+      "deleteTask": "Delete",
+      "markAsDone": "Zrobione"
     },
     "taskList": {
       "title": "Task List",
@@ -72,6 +82,10 @@
       "Low": "Low",
       "Normal": "Normal",
       "High": "High"
+    },
+    "status":{
+      "notDone": "Not Done",
+      "done": "Done"
     }
   },
   "welcome": "Welcome",

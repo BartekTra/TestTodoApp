@@ -20,6 +20,7 @@ function FinalNavbar() {
               <NavDropdown.Item href="/Login">{t('navbar.pages.login')}</NavDropdown.Item>
               <NavDropdown.Item href="/Register">{t('navbar.pages.register')}</NavDropdown.Item>
               <NavDropdown.Item href="/Main">{t('navbar.pages.main')}</NavDropdown.Item>
+              <NavDropdown.Item href="/Report">{t('navbar.pages.report')}</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav className="ml-auto">

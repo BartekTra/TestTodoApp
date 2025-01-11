@@ -24,8 +24,21 @@
       "title": "Strony",
       "login": "Logowanie",
       "register": "Rejestracja",
-      "main": "Główna"
+      "main": "Główna",
+      "report": "Raport"
     }
+  },
+  "report": {
+    "title": "Analiza wszystkich twoich zadan!",
+    "inProgress": "W trakcie wykonywania",
+    "overdue": "Przedawnione",
+    "completedOnTime": "Wykonane na czas!",
+    "allTasks": "Liczba wszystkich twoich taskow",
+    "Message1": "Gratulacje! Udało Ci się wykonać na czas",
+    "z": "ze wszystkich",
+    "Message2": "twoich zadań!",
+    "Message3": "Jest to aż",
+    "Message4": "wszystkich twoich zadań!!"
   },
   "main": {
     "title": "Lista Zadań",
@@ -72,6 +85,10 @@
       "Low": "Niski",
       "Normal": "Normalny",
       "High": "Wysoki"
+    },
+    "status": {
+      "notDone": "Nie Wykonane",
+      "done": "Wykonane"
     }
   },
   "welcome": "Witamy",
