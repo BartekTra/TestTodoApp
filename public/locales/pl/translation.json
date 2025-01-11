@@ -27,53 +27,6 @@
       "main": "Główna"
     }
   },
-  "main": {
-    "title": "Lista Zadań",
-    "addTask": "Dodaj Zadanie",
-    "labels": {
-      "taskTitle": "Tytuł",
-      "taskDescription": "Opis",
-      "category": "Kategoria",
-      "priority": "Priorytet",
-      "date": "Data",
-      "sortBy": "Sortuj według",
-      "sortOrder": "Kolejność",
-      "priorityFilter": "Priorytet"
-    },
-    "priorities": {
-      "high": "Wysoki",
-      "normal": "Normalny",
-      "low": "Niski",
-      "all": "Wszystkie"
-    },
-    "sortOptions": {
-      "date": "Data"
-    },
-    "sortOrder": {
-      "earliest": "Od najwcześniejszego do najpóźniejszego",
-      "latest": "Od najpóźniejszego do najwcześniejszego"
-    },
-    "buttons": {
-      "addTask": "Dodaj Zadanie",
-      "deleteTask": "Usuń"
-    },
-    "taskList": {
-      "title": "Lista Zadań",
-      "noTasks": "Brak dostępnych zadań. Dodaj nowe zadanie powyżej!"
-    },
-    "messages": {
-      "taskAdded": "Zadanie zostało pomyślnie dodane!",
-      "taskDeleted": "Zadanie zostało pomyślnie usunięte!",
-      "taskAddError": "Nie udało się dodać zadania.",
-      "taskDeleteError": "Nie udało się usunąć zadania.",
-      "fillFields": "Proszę wypełnić wszystkie pola przed dodaniem zadania."
-    },
-    "priority": {
-      "Low": "Niski",
-      "Normal": "Normalny",
-      "High": "Wysoki"
-    }
-  },
   "welcome": "Witamy",
   "description": "Zaloguj się, aby uzyskać dostęp do swojego konta."
 }

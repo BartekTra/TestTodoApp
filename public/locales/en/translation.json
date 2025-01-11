@@ -27,53 +27,6 @@
       "main": "Main"
     }
   },
-  "main": {
-    "title": "To-Do List",
-    "addTask": "Add a Task",
-    "labels": {
-      "taskTitle": "Title",
-      "taskDescription": "Description",
-      "category": "Category",
-      "priority": "Priority",
-      "date": "Date",
-      "sortBy": "Sort by",
-      "sortOrder": "Order",
-      "priorityFilter": "Priority"
-    },
-    "priorities": {
-      "high": "High",
-      "normal": "Normal",
-      "low": "Low",
-      "all": "All"
-    },
-    "sortOptions": {
-      "date": "Date"
-    },
-    "sortOrder": {
-      "earliest": "Earliest to Latest",
-      "latest": "Latest to Earliest"
-    },
-    "buttons": {
-      "addTask": "Add Task",
-      "deleteTask": "Delete"
-    },
-    "taskList": {
-      "title": "Task List",
-      "noTasks": "No tasks available. Add a new task above!"
-    },
-    "messages": {
-      "taskAdded": "Task added successfully!",
-      "taskDeleted": "Task deleted successfully!",
-      "taskAddError": "Failed to add task.",
-      "taskDeleteError": "Failed to delete task.",
-      "fillFields": "Please fill in all fields before adding a task."
-    },
-    "priority": {
-      "Low": "Low",
-      "Normal": "Normal",
-      "High": "High"
-    }
-  },
   "welcome": "Welcome",
   "description": "Please log in to access your account."
 }
