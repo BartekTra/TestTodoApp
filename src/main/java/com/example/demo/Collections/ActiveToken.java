@@ -11,5 +11,10 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class ActiveToken {
     @Id
     private String token;
-    private String userId;
+    private String user;
+
+    public ActiveToken(String token, String user) {
+        this.token = token;
+        this.user = user;
+    }
 }
