@@ -25,7 +25,8 @@
       "login": "Logowanie",
       "register": "Rejestracja",
       "main": "Główna",
-      "report": "Raport"
+      "report": "Raport",
+      "logout": "Wyloguj się"
     }
   },
   "report": {
