@@ -180,6 +180,48 @@ public class AuthenticatedQuery {
         return ResponseEntity.ok(report);
     }
 
+    @DeleteMapping("/DeleteTask/{taskId}")
+    public ResponseEntity<Map<String, Object>> deleteTask(
+            @RequestHeader(value = "Authorization", required = false) String authorizationHeader,
+            @PathVariable String taskId) {
+
+        // Sprawdź, czy nagłówek Authorization jest obecny i zaczyna się od "Bearer "
+        if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+            return ResponseEntity.status(401).body(Map.of("error", "Token is missing or invalid"));
+        }
+
+        // Wyodrębnij token (usuń prefiks "Bearer ")
+        String token = authorizationHeader.substring(7);
+
+        // Dekoduj token, aby uzyskać userId
+        String userId;
+        try {
+            userId = getUserIdFromToken(token);
+        } catch (Exception e) {
+            return ResponseEntity.status(401).body(Map.of("error", "Invalid token"));
+        }
+
+        // Znajdź zadanie po taskId
+        Task task = taskService.findById(taskId);
+        if (task == null) {
+            return ResponseEntity.status(404).body(Map.of("error", "Task not found"));
+        }
+
+        // Zweryfikuj, czy zadanie należy do użytkownika
+        if (!task.getUserId().equals(userId)) {
+            return ResponseEntity.status(403).body(Map.of("error", "Unauthorized to delete this task"));
+        }
+
+        // Usuń zadanie
+        taskService.deleteTask(taskId);
+
+        // Zwróć odpowiedź sukcesu
+        Map<String, Object> response = new HashMap<>();
+        response.put("message", "Task deleted successfully!");
+        return ResponseEntity.ok(response);
+    }
+
+
 
 
 
