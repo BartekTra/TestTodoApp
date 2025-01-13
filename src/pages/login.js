@@ -3,6 +3,7 @@ import '../App.css';
 import api from '../api/axiosConfig';
 import { useState } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
+import { useTranslation } from 'react-i18next';
 
 function LoginPage() {
   const [email, setEmail] = useState('');
@@ -10,6 +11,7 @@ function LoginPage() {
   const [responseMessage, setResponseMessage] = useState('');
   const [VerifyValue, SetVerifedValue] = useState(null);
   const navigate = useNavigate(); // Initialize the useNavigate hook
+  const { t, i18n } = useTranslation();
 
   // Function to handle login
   const handleLogin = async (e) => {
@@ -52,6 +54,42 @@ function LoginPage() {
 
   return (
     <div className="App" data-theme="">
+<h1>{t('login.title')}</h1>
+<form onSubmit={handleLogin}>
+  <div>
+    <label htmlFor="email">{t('login.emailLabel')}</label>
+    <input
+      type="email"
+      id="email"
+      value={email}
+      onChange={(e) => setEmail(e.target.value)}
+      required
+    />
+  </div>
+  <div>
+    <label htmlFor="password">{t('login.passwordLabel')}</label>
+    <input
+      type="password"
+      id="password"
+      value={password}
+      onChange={(e) => setPassword(e.target.value)}
+      required
+    />
+  </div>
+  <div align="center">
+    <ReCAPTCHA
+      sitekey="6LfIy64qAAAAAFiaiLzzlCVAJgj2zawU1JXXr_X1"
+      onChange={(val) => SetVerifedValue(val)}
+    />
+  </div>
+  <button type="submit">{t('login.loginButton')}</button>
+</form>
+{responseMessage && <p>{t(responseMessage === 'Login successful! Redirecting...' ? 'login.loginSuccess' : 'login.loginFailed')}</p>}
+<div>
+  <h1>{t('welcome')}</h1>
+  <p>{t('description')}</p>
+</div>
+</div>
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>

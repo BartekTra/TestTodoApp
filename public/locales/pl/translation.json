@@ -1,0 +1,96 @@
+{
+  "login": {
+    "title": "Logowanie",
+    "emailLabel": "Email:",
+    "passwordLabel": "Hasło:",
+    "loginButton": "Zaloguj się",
+    "captchaLabel": "Zweryfikuj, że nie jesteś robotem",
+    "loginSuccess": "Logowanie zakończone sukcesem! Przekierowywanie...",
+    "loginFailed": "Logowanie nie powiodło się. Spróbuj ponownie."
+  },
+  "register": {
+    "title": "Rejestracja",
+    "emailLabel": "Email:",
+    "passwordLabel": "Hasło:",
+    "registerButton": "Zarejestruj się",
+    "captchaLabel": "Zweryfikuj, że nie jesteś robotem",
+    "registerSuccess": "Rejestracja zakończona sukcesem!",
+    "registerFailed": "Rejestracja nie powiodła się. Spróbuj ponownie."
+  },
+  "navbar": {
+    "brand": "Lista Zadań",
+    "home": "Strona Główna",
+    "pages": {
+      "title": "Strony",
+      "login": "Logowanie",
+      "register": "Rejestracja",
+      "main": "Główna",
+      "report": "Raport"
+    }
+  },
+  "report": {
+    "title": "Analiza wszystkich twoich zadan!",
+    "inProgress": "W trakcie wykonywania",
+    "overdue": "Przedawnione",
+    "completedOnTime": "Wykonane na czas!",
+    "allTasks": "Liczba wszystkich twoich taskow",
+    "Message1": "Gratulacje! Udało Ci się wykonać na czas",
+    "z": "ze wszystkich",
+    "Message2": "twoich zadań!",
+    "Message3": "Jest to aż",
+    "Message4": "wszystkich twoich zadań!!"
+  },
+  "main": {
+    "title": "Lista Zadań",
+    "addTask": "Dodaj Zadanie",
+    "labels": {
+      "taskTitle": "Tytuł",
+      "taskDescription": "Opis",
+      "category": "Kategoria",
+      "priority": "Priorytet",
+      "date": "Data",
+      "sortBy": "Sortuj według",
+      "sortOrder": "Kolejność",
+      "priorityFilter": "Priorytet"
+    },
+    "priorities": {
+      "high": "Wysoki",
+      "normal": "Normalny",
+      "low": "Niski",
+      "all": "Wszystkie"
+    },
+    "sortOptions": {
+      "date": "Data"
+    },
+    "sortOrder": {
+      "earliest": "Od najwcześniejszego do najpóźniejszego",
+      "latest": "Od najpóźniejszego do najwcześniejszego"
+    },
+    "buttons": {
+      "addTask": "Dodaj Zadanie",
+      "deleteTask": "Usuń"
+    },
+    "taskList": {
+      "title": "Lista Zadań",
+      "noTasks": "Brak dostępnych zadań. Dodaj nowe zadanie powyżej!"
+    },
+    "messages": {
+      "taskAdded": "Zadanie zostało pomyślnie dodane!",
+      "taskDeleted": "Zadanie zostało pomyślnie usunięte!",
+      "taskAddError": "Nie udało się dodać zadania.",
+      "taskDeleteError": "Nie udało się usunąć zadania.",
+      "fillFields": "Proszę wypełnić wszystkie pola przed dodaniem zadania."
+    },
+    "priority": {
+      "Low": "Niski",
+      "Normal": "Normalny",
+      "High": "Wysoki"
+    },
+    "status": {
+      "notDone": "Nie Wykonane",
+      "done": "Wykonane"
+    }
+  },
+  "welcome": "Witamy",
+  "description": "Zaloguj się, aby uzyskać dostęp do swojego konta."
+}

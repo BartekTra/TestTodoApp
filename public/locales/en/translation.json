@@ -1,0 +1,93 @@
+{
+  "login": {
+    "title": "Login",
+    "emailLabel": "Email:",
+    "passwordLabel": "Password:",
+    "loginButton": "Login",
+    "captchaLabel": "Verify that you are not a robot",
+    "loginSuccess": "Login successful! Redirecting...",
+    "loginFailed": "Login failed. Please try again."
+  },
+  "register": {
+    "title": "Register",
+    "emailLabel": "Email:",
+    "passwordLabel": "Password:",
+    "registerButton": "Register",
+    "captchaLabel": "Verify that you are not a robot",
+    "registerSuccess": "Registration successful!",
+    "registerFailed": "Registration failed. Please try again."
+  },
+  "navbar": {
+    "brand": "To Do List",
+    "home": "Home",
+    "pages": {
+      "title": "Pages",
+      "login": "Login",
+      "register": "Register",
+      "main": "Main",
+      "report": "Report"
+    }
+  },
+  "report": {
+    "title": "Analysis of your tasks!",
+    "inProgress": "In Progress",
+    "overdue": "Overdue",
+    "completedOnTime": "Completed On Time",
+    "allTasks": "All of your tasks"
+  },
+  "main": {
+    "title": "To-Do List",
+    "addTask": "Add a Task",
+    "labels": {
+      "taskTitle": "Title",
+      "taskDescription": "Description",
+      "category": "Category",
+      "priority": "Priority",
+      "date": "Date",
+      "sortBy": "Sort by",
+      "sortOrder": "Order",
+      "priorityFilter": "Priority",
+      "status": "Status"
+    },
+    "priorities": {
+      "high": "High",
+      "normal": "Normal",
+      "low": "Low",
+      "all": "All"
+    },
+    "sortOptions": {
+      "date": "Date"
+    },
+    "sortOrder": {
+      "earliest": "Earliest to Latest",
+      "latest": "Latest to Earliest"
+    },
+    "buttons": {
+      "addTask": "Add Task",
+      "deleteTask": "Delete",
+      "markAsDone": "Zrobione"
+    },
+    "taskList": {
+      "title": "Task List",
+      "noTasks": "No tasks available. Add a new task above!"
+    },
+    "messages": {
+      "taskAdded": "Task added successfully!",
+      "taskDeleted": "Task deleted successfully!",
+      "taskAddError": "Failed to add task.",
+      "taskDeleteError": "Failed to delete task.",
+      "fillFields": "Please fill in all fields before adding a task."
+    },
+    "priority": {
+      "Low": "Low",
+      "Normal": "Normal",
+      "High": "High"
+    },
+    "status":{
+      "notDone": "Not Done",
+      "done": "Done"
+    }
+  },
+  "welcome": "Welcome",
+  "description": "Please log in to access your account."
+}
