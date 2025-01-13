@@ -89,7 +89,6 @@ function LoginPage() {
   <h1>{t('welcome')}</h1>
   <p>{t('description')}</p>
 </div>
-</div>
       <h1>Login</h1>
       <form onSubmit={handleLogin}>
         <div>

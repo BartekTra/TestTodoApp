@@ -2,10 +2,8 @@ import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import Finaltoggle from '.././ThemeProvider.js';
-import { useTranslation } from 'react-i18next';
-
 import Finaltoggle from '.././ThemeProvider.jsx';
+import { useTranslation } from 'react-i18next';
 
 import "./Navbar.css";
 
