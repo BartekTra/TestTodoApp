@@ -33,7 +33,7 @@ function LoginPage() {
 
       setResponseMessage('Login successful! Redirecting...');
       // Navigate to the main page
-      setTimeout(() => navigate('/Main'), 2000); // Delay navigation for user feedback
+      setTimeout(() => navigate('/'), 1000); // Delay navigation for user feedback
     } catch (error) {
       console.error('Error during login:', error);
       setResponseMessage(error.response?.data?.message || 'Login failed. Please try again.');

@@ -21,12 +21,15 @@ function FinalNavbar() {
             <NavDropdown title={t('navbar.pages.title')} id="basic-nav-dropdown">
               <NavDropdown.Item href="/Login">{t('navbar.pages.login')}</NavDropdown.Item>
               <NavDropdown.Item href="/Register">{t('navbar.pages.register')}</NavDropdown.Item>
-              <NavDropdown.Item href="/Main">{t('navbar.pages.main')}</NavDropdown.Item>
+              <NavDropdown.Item href="/">{t('navbar.pages.main')}</NavDropdown.Item>
               <NavDropdown.Item href="/Report">{t('navbar.pages.report')}</NavDropdown.Item>
             </NavDropdown>
           </Nav>
           <Nav className="ml-auto">
             <Finaltoggle />
+          </Nav>
+          <Nav>
+            <p> </p>
           </Nav>
         </Navbar.Collapse>
       </Container>
