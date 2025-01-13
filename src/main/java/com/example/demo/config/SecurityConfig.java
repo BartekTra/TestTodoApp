@@ -53,7 +53,7 @@ public class SecurityConfig {
         .csrf().disable()
         .cors(cors -> corsConfigurationSource())
         .authorizeHttpRequests()
-        .requestMatchers("/","/**" ,"/api/v1/auth/**", "/main.css").permitAll()
+        .requestMatchers("/" ,"/api/v1/auth/**", "/main.css").permitAll()
         .anyRequest().authenticated()
         .and()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
