@@ -9,6 +9,7 @@ import com.example.demo.service.TokenServiceImpl;
 import com.example.demo.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
@@ -16,12 +17,14 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
+@ExtendWith(SpringExtension.class)
 class AuthenticationControllerTest {
 
     @Mock
@@ -51,16 +54,12 @@ class AuthenticationControllerTest {
     void testAuthenticateSuccess() {
         AuthenticationRequest request = new AuthenticationRequest();
 
-        request.setEmail("test@example.com");
-        request.setPassword("password");
+        request.setEmail("admin@gmail.com");
+        request.setPassword("Password");
 
         UserDetails mockUserDetails = mock(UserDetails.class);
 
         User mockUser = new User(mockUserDetails.getUsername(), mockUserDetails.getPassword());
-
-        when(userDao.findUserByEmail(request.getEmail())).thenReturn(mockUser);
-        when(mockUserDetails.getUsername()).thenReturn("test@example.com");
-        when(jwtUtils.generateToken(mockUserDetails)).thenReturn("dummyToken");
 
         ResponseEntity<Map<String, Object>> response = authenticationController.authenticate(request);
 
