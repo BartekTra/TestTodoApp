@@ -13,51 +13,104 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * Represents a user account stored in the "Accounts" MongoDB collection.
+ */
 @Getter
 @Setter
-@Document(collection = "Accounts") // Specify MongoDB collection name
+@Document(collection = "Accounts")
 public class User implements UserDetails {
+
+    /**
+     * Unique identifier for the user.
+     */
     @Id
-    private String id; // MongoDB's unique identifier
+    private String id;
+
+    /**
+     * Username of the user.
+     */
     private String username;
+
+    /**
+     * Password for the user account.
+     */
     private String password;
+
+    /**
+     * Indicates if the user account is enabled.
+     */
     private boolean enabled;
+
+    /**
+     * Indicates if the account is non-expired.
+     */
     private boolean accountNonExpired;
+
+    /**
+     * Indicates if the account is non-locked.
+     */
     private boolean accountNonLocked;
+
+    /**
+     * Indicates if the credentials are non-expired.
+     */
     private boolean credentialsNonExpired;
-    private List<String> roles; // Simplified role storage for MongoDB
+
+    /**
+     * List of roles assigned to the user.
+     */
+    private List<String> roles;
+
+    /**
+     * Set of authorities granted to the user.
+     */
     private Set<GrantedAuthority> authorities;
 
-    // Constructors
+    /**
+     * Default constructor initializing default values.
+     */
     public User() {
         this.authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
-        this.enabled = true; // Default value
-        this.accountNonExpired = true; // Default value
-        this.accountNonLocked = true; // Default value
-        this.credentialsNonExpired = true; // Default value
+        this.enabled = true;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
     }
 
+    /**
+     * Constructor to create a User object with username and password.
+     *
+     * @param username the username.
+     * @param password the password.
+     */
     public User(String username, String password) {
         this.username = username;
         this.password = password;
         this.authorities = Collections.singleton(new SimpleGrantedAuthority("ROLE_USER"));
-        this.enabled = true; // Default value
-        this.accountNonExpired = true; // Default value
-        this.accountNonLocked = true; // Default value
-        this.credentialsNonExpired = true; // Default value
+        this.enabled = true;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
     }
 
+    /**
+     * Constructor to create a User object with username, password, and authorities.
+     *
+     * @param username    the username.
+     * @param password    the password.
+     * @param authorities the authorities.
+     */
     public User(String username, String password, Set<GrantedAuthority> authorities) {
         this.username = username;
         this.password = password;
         this.authorities = authorities;
-        this.enabled = true; // Default value
-        this.accountNonExpired = true; // Default value
-        this.accountNonLocked = true; // Default value
-        this.credentialsNonExpired = true; // Default value
+        this.enabled = true;
+        this.accountNonExpired = true;
+        this.accountNonLocked = true;
+        this.credentialsNonExpired = true;
     }
 
-    // Methods from UserDetails interface
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         return this.authorities;

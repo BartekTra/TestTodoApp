@@ -40,6 +40,10 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * SecurityConfig class is responsible for configuring the security settings of the application.
+ * It enables web security, defines authentication providers, and configures HTTP security.
+ */
 @Configuration
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -47,26 +51,36 @@ public class SecurityConfig {
     private final JwtAthFilter jwtAuthFilter;
     private final UserDao userDao;
 
+    /**
+     * Configures the security filter chain for the application.
+     *
+     * @param http HttpSecurity object used to customize security settings.
+     * @return Configured SecurityFilterChain object.
+     * @throws Exception in case of any configuration errors.
+     */
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
-        .csrf().disable()
-        .cors(cors -> corsConfigurationSource())
-        .authorizeHttpRequests()
-        .requestMatchers("/","/**" ,"/api/v1/auth/**", "/main.css").permitAll()
-        .anyRequest().authenticated()
-        .and()
-        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-        .and()
-        .authenticationProvider(authenticationProvider())
-        .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
-        .formLogin(form ->
-                form.loginPage("http://localhost:3000/Pages/login").permitAll()
-        );
+                .csrf().disable()
+                .cors(cors -> corsConfigurationSource())
+                .authorizeHttpRequests()
+                .requestMatchers("/", "/**", "/api/v1/auth/**", "/main.css").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                .and()
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class)
+                .formLogin(form -> form.loginPage("http://localhost:3000/Pages/login").permitAll());
 
-    return http.build();
+        return http.build();
     }
 
+    /**
+     * Provides the authentication provider for the application.
+     *
+     * @return Configured DaoAuthenticationProvider object.
+     */
     @Bean
     public AuthenticationProvider authenticationProvider() {
         final DaoAuthenticationProvider authenticationProviderObject = new DaoAuthenticationProvider();
@@ -76,16 +90,25 @@ public class SecurityConfig {
         return authenticationProviderObject;
     }
 
+    /**
+     * Provides the password encoder to be used for encoding and decoding user passwords.
+     *
+     * @return PasswordEncoder instance.
+     */
     @Bean
     public PasswordEncoder passwordEncoder() {
         return NoOpPasswordEncoder.getInstance();
-        //return new BCryptPasswordEncoder();
     }
 
+    /**
+     * Configures the CORS settings for the application.
+     *
+     * @return CorsConfigurationSource object with the required settings.
+     */
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:3000")); //allows React to access the API from origin on port 3000. Change accordingly
+        configuration.setAllowedOrigins(List.of("http://localhost:3000"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE"));
         configuration.setAllowCredentials(true);
         configuration.addAllowedHeader("*");
@@ -94,20 +117,26 @@ public class SecurityConfig {
         return source;
     }
 
+    /**
+     * Provides the user details service for the application.
+     *
+     * @return UserDetailsService implementation.
+     */
     @Bean
     public UserDetailsService userDetailsService() {
-        return new UserDetailsService() {
-            @Override
-            public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-                return userDao.findUserByEmail(email);
-            }
-        };
+        return email -> userDao.findUserByEmail(email);
     }
 
-
-    @Bean(name = BeanIds.AUTHENTICATION_MANAGER)
+    /**
+     * Provides the authentication manager for the application.
+     *
+     * @param config AuthenticationConfiguration object.
+     * @return AuthenticationManager instance.
+     * @throws Exception in case of any errors.
+     */
+    @Bean(name = "authenticationManager")
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
     }
-
 }
+

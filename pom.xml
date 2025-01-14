@@ -74,6 +74,7 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
+            <version>3.1.5</version>
             <scope>test</scope>
         </dependency>
 
@@ -87,6 +88,11 @@
             <artifactId>spring-boot-starter-data-mongodb</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>5.7.0</version>
+        </dependency>
 
     </dependencies>
 

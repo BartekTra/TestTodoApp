@@ -18,8 +18,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Function;
 
+/**
+ * AccountsRepository provides database operations for the User entity.
+ */
 @Repository
-public interface AccountsRepository extends MongoRepository <User, String> {
-    Optional<User> findByUsername(String username);
+public interface AccountsRepository extends MongoRepository<User, String> {
 
+    /**
+     * Finds a user by their username.
+     *
+     * @param username the username of the user.
+     * @return an Optional containing the User object if found, otherwise empty.
+     */
+    Optional<User> findByUsername(String username);
 }

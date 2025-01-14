@@ -29,41 +29,49 @@ public class AuthenticationController {
     private final JwtUtils jwtUtils;
 
     @Autowired
-    TokenServiceImpl tokenService;
+    private TokenServiceImpl tokenService;
     @Autowired
-    UserService userService;
+    private UserService userService;
 
+    /**
+     * Authenticates a user based on email and password, and generates a JWT token.
+     *
+     * @param request the {@link AuthenticationRequest} containing email and password.
+     * @return a {@link ResponseEntity} containing the generated token or an error message.
+     */
     @PostMapping("/authenticate")
     public ResponseEntity<Map<String, Object>> authenticate(@RequestBody AuthenticationRequest request) {
         try {
-            // Authenticate user credentials
             authenticationManager.authenticate(
                     new UsernamePasswordAuthenticationToken(request.getEmail(), request.getPassword())
             );
 
-            // Retrieve user details
             final UserDetails user = userDao.findUserByEmail(request.getEmail());
             if (user == null) {
                 return ResponseEntity.status(404).body(Map.of("error", "User not found"));
             }
 
-            //delete old token
-            if(tokenService.findTokenByUser(user.getUsername()) != null){
+            // Delete old token if exists
+            if (tokenService.findTokenByUser(user.getUsername()) != null) {
                 tokenService.deleteTokenByUser(user.getUsername());
             }
-            // Generate JWT token
-            String token = jwtUtils.generateToken(user);
 
+            // Generate new JWT token
+            String token = jwtUtils.generateToken(user);
             tokenService.saveToken(user.getUsername(), token);
 
-            // Return success response with the token
             return ResponseEntity.ok(Map.of("token", token));
         } catch (Exception e) {
             return ResponseEntity.status(401).body(Map.of("error", "Invalid email or password"));
         }
     }
 
-    @CrossOrigin(origins = "*")
+    /**
+     * Registers a new user.
+     *
+     * @param user the {@link User} object containing user details.
+     * @return a {@link ResponseEntity} containing the saved user or an error message.
+     */
     @PostMapping("/Register")
     public ResponseEntity<Map<String, Object>> register(@RequestBody User user) {
         try {
@@ -72,34 +80,31 @@ public class AuthenticationController {
             response.put("message", "User registered successfully");
             response.put("user", savedUser);
             return ResponseEntity.ok(response);
-        }
-        catch (Exception e) {
-            e.printStackTrace(); // Log the exception details
+        } catch (Exception e) {
+            e.printStackTrace();
             Map<String, Object> errorResponse = new HashMap<>();
             errorResponse.put("error", "Registration failed");
             return ResponseEntity.status(500).body(errorResponse);
         }
     }
 
+    /**
+     * Logs out a user by invalidating their JWT token.
+     *
+     * @param token the Bearer token from the Authorization header.
+     * @return a {@link ResponseEntity} containing a success message or an error message.
+     */
     @PostMapping("/logout")
     public ResponseEntity<Map<String, String>> logout(@RequestHeader("Authorization") String token) {
         try {
-            // Extract username from token
             String username = jwtUtils.extractUsername(token.replace("Bearer ", ""));
-
-
             if (tokenService.findTokenByUser(username) != null) {
                 tokenService.deleteTokenByUser(username);
                 return ResponseEntity.ok(Map.of("message", "Logged out successfully"));
             }
-
             return ResponseEntity.status(400).body(Map.of("error", "Token not found or already logged out"));
         } catch (Exception e) {
             return ResponseEntity.status(400).body(Map.of("error", "Invalid token"));
         }
     }
-
-
-
-
 }
