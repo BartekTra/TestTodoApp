@@ -6,5 +6,7 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.List;
 
 public interface TaskRepository extends MongoRepository<Task, String> {
-    List<Task> findByUserId(String userId); // Spring Data automatically implements this query
+    List<Task> findByUserId(String userId);
+
+    List<Task> findByUserIdAndIsDone(String userId, boolean isDone); // For archived tasks
 }

@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Getter
 @Setter
@@ -23,6 +22,7 @@ public class Task {
     private String category;
     private Priority priority;
     private Boolean isDone;
+    private Boolean isArchived; // Field to track if the task is archived
 
     public enum Priority {
         HIGH,
@@ -30,50 +30,59 @@ public class Task {
         LOW
     }
 
-
-    public Priority getPriority() {
-        return priority;
+    // Default constructor
+    public Task() {
+        this.isDone = false; // Default value for new tasks
+        this.isArchived = false; // Default value for new tasks
     }
 
-    public void setPriority(Priority priority) {
-        this.priority = priority;
-    }
-
-    public Boolean getIsDone() {
-        return isDone;
-    }
-
-    public void setIsDone(Boolean isDone) {
-        this.isDone = isDone;
-    }
-
-    public void setCompletionDate(LocalDate completionDate) {
-        this.completionDate = completionDate;
-    }
-
-    public Task() { }
-
-    public Task(String title, String description, LocalDate dueDate, LocalDate completionDate, String userId, String Category, Priority priority, Boolean isDone) {
+    // Constructor with parameters
+    public Task(String title, String description, LocalDate dueDate, LocalDate completionDate, String userId, String category, Priority priority, Boolean isDone, Boolean isArchived) {
         this.title = title;
         this.description = description;
         this.dueDate = dueDate;
         this.completionDate = completionDate;
         this.userId = userId;
-        this.category = Category;
+        this.category = category;
         this.priority = priority;
         this.isDone = isDone;
-
+        this.isArchived = isArchived;
     }
 
+    // Getter for isArchived
+    public Boolean isArchived() {
+        return isArchived;
+    }
+
+    // Setter for isArchived
+    public void setArchived(Boolean archived) {
+        this.isArchived = archived;
+    }
+
+    // Getter for isDone
+    public Boolean isDone() {
+        return isDone;
+    }
+
+    // Setter for isDone
+    public void setDone(Boolean done) {
+        this.isDone = done;
+    }
+
+    // toString method
     @Override
     public String toString() {
-        return "Task { " +
+        return "Task {" +
                 "id='" + id + '\'' +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", dueDate=" + dueDate + '\'' +
+                ", dueDate=" + dueDate +
+                ", completionDate=" + completionDate +
                 ", userId='" + userId + '\'' +
                 ", category='" + category + '\'' +
+                ", priority=" + priority +
+                ", isDone=" + isDone +
+                ", isArchived=" + isArchived +
                 '}';
     }
 }
