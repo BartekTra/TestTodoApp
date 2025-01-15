@@ -35,4 +35,15 @@ public class TaskService {
     public void deleteTask(String taskId) {
         taskRepository.deleteById(taskId);
     }
+
+    public void archiveTask(Task task) {
+        task.setIsDone(true); // Mark as done
+        task.setCategory("Archived"); // Set category to Archived (optional)
+        taskRepository.save(task);
+    }
+
+    public List<Task> findArchivedTasksByUserId(String userId) {
+        // Find tasks that are archived and belong to the user
+        return taskRepository.findByUserIdAndIsDone(userId, true);
+    }
 }
