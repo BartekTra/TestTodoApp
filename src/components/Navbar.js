@@ -39,7 +39,7 @@ function FinalNavbar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <NavDropdown title={t('navbar.pages.title')} id="basic-nav-dropdown">
-              <Nav.Link href="/">{t('navbar.home')}</Nav.Link>
+              <NavDropdown.Item href="/">{t('navbar.home')}</NavDropdown.Item>
               {!isAuthenticated && (
                 <NavDropdown.Item href="/Login">{t('navbar.pages.login')}</NavDropdown.Item>
               )}
@@ -52,9 +52,6 @@ function FinalNavbar() {
                 </NavDropdown.Item>
               )}
               {isAuthenticated && (
-                <NavDropdown.Item href="/Main">{t('navbar.pages.main')}</NavDropdown.Item>
-              )}
-              {isAuthenticated && (
                 <NavDropdown.Item href="/Report">{t('navbar.pages.report')}</NavDropdown.Item>
               )}
             </NavDropdown>
@@ -62,9 +59,8 @@ function FinalNavbar() {
           <Nav className="ml-auto">
             <Finaltoggle />
           </Nav>
-          <Nav>
-            <p> </p>
-          </Nav>
+      
+          
         </Navbar.Collapse>
       </Container>
     </Navbar>

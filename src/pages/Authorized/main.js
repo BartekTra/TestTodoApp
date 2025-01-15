@@ -70,7 +70,7 @@ function Main() {
 
   const handleDeleteTask = async (taskId) => {
     try {
-      await api.delete(`/api/v1/tasks/${taskId}`); // Replace with your actual API endpoint
+      await api.delete(`/api/v1/DeleteTask/${taskId}`); // Replace with your actual API endpoint
       setTasks(tasks.filter((task) => task.id !== taskId));
       setResponseMessage('Task deleted successfully!');
     } catch (error) {
@@ -177,8 +177,15 @@ function Main() {
                   <strong>{t('main.labels.priority')}:</strong> {task.priority} <br />
                   <strong>{t('main.labels.date')}:</strong> {task.dueDate} <br />
                   <strong>{t('main.labels.status')}:</strong>{' '}
-                  {task.isDone ? t('main.status.done') : t('main.status.notDone')} <br />
-                  <button onClick={() => handleMarkAsDone(task.id)} disabled={task.isDone}>
+                  {new Date(task.dueDate) < new Date() && !task.isDone
+                    ? t('main.status.overdue')
+                    : task.isDone
+                    ? t('main.status.done')
+                    : t('main.status.notDone')} <br />
+                  <button
+                    onClick={() => handleMarkAsDone(task.id)}
+                    disabled={task.isDone || new Date(task.dueDate) <= new Date()}
+                  >
                     {t('main.buttons.markAsDone')}
                   </button>
                   <button onClick={() => handleDeleteTask(task.id)}>

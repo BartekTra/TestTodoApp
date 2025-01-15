@@ -3,6 +3,7 @@ import api from '../api/axiosConfig.js';
 import { useState } from 'react';
 import ReCAPTCHA from "react-google-recaptcha";
 import { useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate for navigation
 
 function RegisterPage() {
   const [email, setEmail] = useState('');
@@ -10,6 +11,8 @@ function RegisterPage() {
   const [responseMessage, setResponseMessage] = useState('');
   const [VerifyValue, SetVerifedValue] = useState(null);
   const { t } = useTranslation();
+  const navigate = useNavigate(); // Initialize the useNavigate hook
+
 
   const handleRegister = async (e) => {
     e.preventDefault();
@@ -24,6 +27,7 @@ function RegisterPage() {
       });
 
       setResponseMessage('registerSuccess');
+      setTimeout(() => navigate('/'), 1000);
     } catch (error) {
       console.error('Error during Register:', error);
       setResponseMessage('registerFailed');

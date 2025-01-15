@@ -37,9 +37,9 @@
     "allTasks": "Liczba wszystkich twoich taskow",
     "Message1": "Gratulacje! Udało Ci się wykonać na czas",
     "z": "ze wszystkich",
-    "Message2": "twoich zadań!",
-    "Message3": "Jest to aż",
-    "Message4": "wszystkich twoich zadań!!"
+    "Message2": "twoich zadań",
+    "Message3": "Jest to ",
+    "Message4": "wszystkich twoich zadań"
   },
   "main": {
     "title": "Lista Zadań",
@@ -52,7 +52,8 @@
       "date": "Data",
       "sortBy": "Sortuj według",
       "sortOrder": "Kolejność",
-      "priorityFilter": "Priorytet"
+      "priorityFilter": "Priorytet",
+      "status": "Status"
     },
     "priorities": {
       "high": "Wysoki",
@@ -69,7 +70,8 @@
     },
     "buttons": {
       "addTask": "Dodaj Zadanie",
-      "deleteTask": "Usuń"
+      "deleteTask": "Usuń",
+      "markAsDone": "Zrobione"
     },
     "taskList": {
       "title": "Lista Zadań",
@@ -89,7 +91,8 @@
     },
     "status": {
       "notDone": "Nie Wykonane",
-      "done": "Wykonane"
+      "done": "Wykonane",
+      "overdue": "Przedawnione"
     }
   },
   "welcome": "Witamy",

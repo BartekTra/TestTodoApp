@@ -3,13 +3,13 @@
     "title": "Login",
     "emailLabel": "Email:",
     "passwordLabel": "Password:",
-    "loginButton": "Login",
+    "loginButton": "Log in",
     "captchaLabel": "Verify that you are not a robot",
     "loginSuccess": "Login successful! Redirecting...",
     "loginFailed": "Login failed. Please try again."
   },
   "register": {
-    "title": "Register",
+    "title": "Registration",
     "emailLabel": "Email:",
     "passwordLabel": "Password:",
     "registerButton": "Register",
@@ -18,26 +18,32 @@
     "registerFailed": "Registration failed. Please try again."
   },
   "navbar": {
-    "brand": "To Do List",
+    "brand": "Task List",
     "home": "Home",
     "pages": {
       "title": "Pages",
       "login": "Login",
       "register": "Register",
       "main": "Main",
-      "report": "Report"
+      "report": "Report",
+      "logout": "Log out"
     }
   },
   "report": {
-    "title": "Analysis of your tasks!",
+    "title": "Analysis of all your tasks!",
     "inProgress": "In Progress",
     "overdue": "Overdue",
-    "completedOnTime": "Completed On Time",
-    "allTasks": "All of your tasks"
+    "completedOnTime": "Completed on Time!",
+    "allTasks": "Total number of your tasks",
+    "Message1": "Congratulations! You managed to complete on time",
+    "z": "out of all",
+    "Message2": "of your tasks",
+    "Message3": "This is",
+    "Message4": "of all your tasks"
   },
   "main": {
-    "title": "To-Do List",
-    "addTask": "Add a Task",
+    "title": "Task List",
+    "addTask": "Add Task",
     "labels": {
       "taskTitle": "Title",
       "taskDescription": "Description",
@@ -59,13 +65,13 @@
       "date": "Date"
     },
     "sortOrder": {
-      "earliest": "Earliest to Latest",
-      "latest": "Latest to Earliest"
+      "earliest": "From earliest to latest",
+      "latest": "From latest to earliest"
     },
     "buttons": {
       "addTask": "Add Task",
       "deleteTask": "Delete",
-      "markAsDone": "Zrobione"
+      "markAsDone": "Done"
     },
     "taskList": {
       "title": "Task List",
@@ -74,8 +80,8 @@
     "messages": {
       "taskAdded": "Task added successfully!",
       "taskDeleted": "Task deleted successfully!",
-      "taskAddError": "Failed to add task.",
-      "taskDeleteError": "Failed to delete task.",
+      "taskAddError": "Failed to add the task.",
+      "taskDeleteError": "Failed to delete the task.",
       "fillFields": "Please fill in all fields before adding a task."
     },
     "priority": {
@@ -83,11 +89,13 @@
       "Normal": "Normal",
       "High": "High"
     },
-    "status":{
+    "status": {
       "notDone": "Not Done",
-      "done": "Done"
+      "done": "Done",
+      "overdue": "Overdue"
+      
     }
   },
   "welcome": "Welcome",
-  "description": "Please log in to access your account."
+  "description": "Log in to access your account."
 }

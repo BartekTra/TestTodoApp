@@ -46,7 +46,7 @@ function TaskReport() {
             <strong><em>{t('report.Message1')} </em> {reportData.completedOnTime} <em> {t('report.z')} </em> {reportData.allTasks} <em> {t('report.Message2')} </em></strong>
         </p>
         <p>
-            <strong><em>{t('report.Message3')} </em> {((reportData.completedOnTime / reportData.allTasks) * 100).toFixed(0)}% {t('report.Message4')}!</strong>
+            <strong><em>{t('report.Message3')} </em> {((reportData.completedOnTime / reportData.allTasks) * 100).toFixed(0)}% {t('report.Message4')}</strong>
         </p>
 
       </div>
