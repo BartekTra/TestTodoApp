@@ -44,6 +44,7 @@
   "main": {
     "title": "Task List",
     "addTask": "Add Task",
+    "editTask": "Edit Task",
     "labels": {
       "taskTitle": "Title",
       "taskDescription": "Description",
@@ -70,8 +71,14 @@
     },
     "buttons": {
       "addTask": "Add Task",
+      "updateTask": "Update Task",
+      "cancelEdit": "Cancel Edit",
       "deleteTask": "Delete",
-      "markAsDone": "Done"
+      "markAsDone": "Done",
+      "archiveTask": "Archive Task",
+      "viewArchived": "View Archived",
+      "editTask": "Edit Task",
+      "viewActive": "View Active"
     },
     "taskList": {
       "title": "Task List",
@@ -79,9 +86,13 @@
     },
     "messages": {
       "taskAdded": "Task added successfully!",
+      "taskUpdated": "Task updated successfully!",
       "taskDeleted": "Task deleted successfully!",
+      "taskArchived": "Task archived successfully!",
       "taskAddError": "Failed to add the task.",
+      "taskUpdateError": "Failed to update the task.",
       "taskDeleteError": "Failed to delete the task.",
+      "taskArchiveError": "Failed to archive the task.",
       "fillFields": "Please fill in all fields before adding a task."
     },
     "priority": {
@@ -93,7 +104,6 @@
       "notDone": "Not Done",
       "done": "Done",
       "overdue": "Overdue"
-      
     }
   },
   "welcome": "Welcome",

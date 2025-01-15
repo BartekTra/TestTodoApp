@@ -30,20 +30,24 @@
     }
   },
   "report": {
-    "title": "Analiza wszystkich twoich zadan!",
+    "title": "Analiza wszystkich twoich zadań!",
     "inProgress": "W trakcie wykonywania",
     "overdue": "Przedawnione",
     "completedOnTime": "Wykonane na czas!",
-    "allTasks": "Liczba wszystkich twoich taskow",
+    "allTasks": "Liczba wszystkich twoich zadań",
     "Message1": "Gratulacje! Udało Ci się wykonać na czas",
     "z": "ze wszystkich",
     "Message2": "twoich zadań",
     "Message3": "Jest to ",
-    "Message4": "wszystkich twoich zadań"
+    "Message4": "wszystkich twoich zadań",
+    "errors": {
+      "fetchFailed": "Nie udało się pobrać danych raportu. Spróbuj ponownie później."
+    }
   },
   "main": {
     "title": "Lista Zadań",
     "addTask": "Dodaj Zadanie",
+    "editTask": "Edytuj Zadanie",
     "labels": {
       "taskTitle": "Tytuł",
       "taskDescription": "Opis",
@@ -70,8 +74,16 @@
     },
     "buttons": {
       "addTask": "Dodaj Zadanie",
+      "updateTask": "Zaktualizuj Zadanie",
+      "cancelEdit": "Anuluj Edycję",
       "deleteTask": "Usuń",
-      "markAsDone": "Zrobione"
+      "markAsDone": "Zrobione",
+      "archiveTask": "Archiwizuj Zadanie",
+      "viewArchived": "Pokaż Archiwalne",
+      "viewActive": "Pokaż Aktywne",
+      "editTask": "Edytuj Zadanie",
+      "showArchived": "Pokaż Archiwalne",
+      "showActive": "Pokaż Aktywne"
     },
     "taskList": {
       "title": "Lista Zadań",
@@ -79,9 +91,13 @@
     },
     "messages": {
       "taskAdded": "Zadanie zostało pomyślnie dodane!",
+      "taskUpdated": "Zadanie zostało pomyślnie zaktualizowane!",
       "taskDeleted": "Zadanie zostało pomyślnie usunięte!",
+      "taskArchived": "Zadanie zostało pomyślnie zarchiwizowane!",
       "taskAddError": "Nie udało się dodać zadania.",
+      "taskUpdateError": "Nie udało się zaktualizować zadania.",
       "taskDeleteError": "Nie udało się usunąć zadania.",
+      "taskArchiveError": "Nie udało się zarchiwizować zadania.",
       "fillFields": "Proszę wypełnić wszystkie pola przed dodaniem zadania."
     },
     "priority": {
